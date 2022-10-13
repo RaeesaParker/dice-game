@@ -16,7 +16,7 @@ body{
 }
 
 h1{
-	font-size: 2.5vw;
+	font-size: 3vw;
 	margin: 0;
 	padding: 3% 0;
 }
@@ -50,7 +50,7 @@ p{
 
 .header-flex-container{
 	align-items: center;
-	background-color: var(--black);
+	border-bottom: 3px solid var(--black);
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
@@ -58,7 +58,7 @@ p{
 
 .header-flex-item{	
 	text-align: center;
-	color: var(--white);
+	color: var(--black);
 }
 
 
