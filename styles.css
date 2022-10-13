@@ -73,9 +73,24 @@ p{
 
 
 
+/* ------------------------- MAIN ------------------------------- */
+
+.main-flex-container{
+	background-color: var(--grey);
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+.main-flex-item{
+	background-color: red;
+}
+
+
+
+
 
 /* ------------------------- FOOTER ------------------------------- */
-
 
 #sec-footer{
 	bottom:0px;
