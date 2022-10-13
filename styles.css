@@ -39,6 +39,7 @@ p{
 
 button{
 	display: flex;
+	margin: auto auto;
 }
 
 /* ------------------------- VARIABLES ------------------------------- */
@@ -87,8 +88,6 @@ button{
 
 /* ------------------------- MAIN ------------------------------- */
 
-
-
 .main-flex-container{
 	align-items: stretch;
 	background-color: var(--grey);
@@ -111,6 +110,34 @@ button{
 #main-flex-dice{
 	flex-grow: 2;
 	background-color: yellow;
+}
+
+.main-player-total-div{
+	background-color: green;
+	margin: 12% 0;
+}
+
+.main-player-current-div{
+	background-color: blue;
+	margin: 5% 0 ;
+}
+
+
+.main-flex-player h2{
+	font-size: 5vw;
+	padding: 5% 0 0 0 ;
+}
+
+.main-flex-player h3{
+	font-size: 2vw;
+	padding-bottom: 3%;
+}
+
+.button-hold{
+	background-color: var(--red);
+	border-radius: 5%;
+	margin-top: 7%;
+	padding: 2% 10%;
 }
 
 
