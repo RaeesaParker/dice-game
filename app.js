@@ -44,7 +44,7 @@ figDie.addEventListener("click", (event) => {
 			figDie.src = "./assets/5.png"
 			break;
 		case randomNum = 6:
-			figDie.src = "./assets/6png"
+			figDie.src = "./assets/6.png"
 			break;
 	}
 })
