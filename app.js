@@ -19,6 +19,8 @@ let playerTwo = {
 	totalScore: 0
 }
 
+let playerOneHoldingh3 = document.getElementById("play1-hold");
+
 
 // ============= Remove overlay screen if any button is detected =============
 
@@ -39,9 +41,6 @@ let figDie = document.getElementById("fig-die");
 // Randomise dice when clicked
 figDie.addEventListener("click", (event) => {
 	let randomNum = Math.floor((Math.random() * 6) + 1);
-
-	let playerOneHoldingh3 = document.getElementById("play1-hold");
-
 
 	// Change the image depending on which number is selected
 	switch (randomNum) {
@@ -65,29 +64,28 @@ figDie.addEventListener("click", (event) => {
 			break;
 	}
 
-	// Add the random number to player 1's holding 
-
-	playerOne.holdingScore = playerOne.holdingScore + randomNum;
-
-	// Change value of player 1's holding 
-	playerOneHoldingh3.innerText = `${playerOne.holdingScore}`
-
+	diceOutcome(randomNum)
 })
 
 
+// If the outcome is 1 => set holding score to zero => change inner text to zero
+// Else keep adding to holding score
+let diceOutcome = (randomNum) => {
+	if (randomNum == 1 ){
+		playerOne.holdingScore = 0;
+	}
+	else{
+		playerOne.holdingScore = playerOne.holdingScore + randomNum;
+	}
+	playerOneHoldingh3.innerText = `${playerOne.holdingScore}`
+}
 
-// ============= Change the value of player 1's hold when die is clicked =============
 
 
 
 
 
-
-
-
-
-//  When the dice is clicked => Change image then change the score. So we need a function 
-
+//  If a not one is reached then run the function to add to the holding score - else take holding score down to zero
 
 
 
