@@ -15,6 +15,17 @@ body{
 	background-color:seagreen ;
 }
 
+h1{
+	font-size: 2vw;
+	margin: 0;
+	padding: 3% 0;
+}
+
+h3{
+	font-size: 1.5vw;
+	margin: 0;
+}
+
 
 /* ------------------------- VARIABLES ------------------------------- */
 
@@ -24,10 +35,23 @@ body{
 
 
 #sec-header{
-	background-color: aliceblue;
 	width: 100%;
+	background-color: skyblue;
 }
 
+.header-flex-container{
+	align-items: center;
+	background-color: red;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+}
+
+.header-flex-item{
+	background-color: lightyellow;
+	text-align: center;
+}
 
 
 
