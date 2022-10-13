@@ -12,7 +12,7 @@ html{
 
 body{
 	margin: 0;
-	background-color: var(--white) ;
+	background-color: var(--grey) ;
 }
 
 h1{
@@ -21,22 +21,33 @@ h1{
 	padding: 3% 0;
 }
 
-h3{
-	font-size: 2vw;
+h2{
+	font-size: 2vw ;
 	margin: 0;
+	text-align: center;
+}
+
+h3{
+	font-size: 1.5vw;
+	margin: 0;
+	text-align: center;
 }
 
 p{
 	color: green;
 }
 
+button{
+	display: flex;
+}
+
 /* ------------------------- VARIABLES ------------------------------- */
 
 
 :root{
-	--white: #F5EDED;
-	--red:  #D72323;
-	--grey:  #3E3636;
+	--white: #F5F5F5;
+	--red:  #F05454;
+	--grey:  #30475E;
 	--black: #000000;
 }
 
@@ -50,6 +61,7 @@ p{
 
 .header-flex-container{
 	align-items: center;
+	background-color: var(--white);
 	border-bottom: 3px solid var(--black);
 	display: flex;
 	flex-direction: row;
@@ -75,19 +87,31 @@ p{
 
 /* ------------------------- MAIN ------------------------------- */
 
+
+
 .main-flex-container{
+	align-items: stretch;
 	background-color: var(--grey);
 	display: flex;
 	flex-direction: row;
-	justify-content: space-evenly;
+	justify-content: space-between;
+	min-height: 50vh;
 }
 
 .main-flex-item{
-	background-color: red;
+	background-color: var(--red);
 }
 
 
+.main-flex-player{
+	flex-grow: 3;
+}
 
+
+#main-flex-dice{
+	flex-grow: 2;
+	background-color: yellow;
+}
 
 
 /* ------------------------- FOOTER ------------------------------- */
