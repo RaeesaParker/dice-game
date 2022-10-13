@@ -13,6 +13,38 @@ let secOverscreen = document.getElementById("sec-overscreen");
 body.addEventListener("keydown", (event) => {
 	// Turn off the display
 	if (secOverscreen.style.display != "none"){
-		secOverscreen.style.display = "none"
+		secOverscreen.style.display = "none";
+	}
+})
+
+
+// ============= Randomise dice when pressed =============
+
+let figDie = document.getElementById("fig-die");
+
+// Randomise dice when clicked
+figDie.addEventListener("click", (event) => {
+	let randomNum = Math.floor((Math.random() * 6) + 1)
+
+	// Change the image depending on which number is selected
+	switch (randomNum) {
+		case randomNum = 1:
+			figDie.src = "./assets/1.png"
+			break;
+		case randomNum = 2:
+			figDie.src = "./assets/2.png"
+			break;
+		case randomNum = 3:
+			figDie.src = "./assets/3.png"
+			break;
+		case randomNum = 4:
+			figDie.src = "./assets/4.png"
+			break;
+		case randomNum = 5:
+			figDie.src = "./assets/5.png"
+			break;
+		case randomNum = 6:
+			figDie.src = "./assets/6png"
+			break;
 	}
 })
