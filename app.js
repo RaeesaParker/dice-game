@@ -19,7 +19,12 @@ let playerTwo = {
 	totalScore: 0
 }
 
-let playerOneHoldingh3 = document.getElementById("play1-hold");
+let playerOneHoldingh3 = document.getElementById("play1-score-hold");
+
+let playerOneTotalh2 = document.getElementById("play1-score-total");
+
+let playerOneHoldBtn = document.getElementById("play1-btn-hold")
+
 
 
 // ============= Remove overlay screen if any button is detected =============
@@ -81,11 +86,16 @@ let diceOutcome = (randomNum) => {
 }
 
 
+//  If the hold button is clicked then add the holding score to the total => take holding down to zero
+playerOneHoldBtn.addEventListener("click", () => {
+	playerOne.totalScore = playerOne.holdingScore ; 
+	playerOne.holdingScore = 0;
+	updateScoreText()
+})
 
 
 
-
-//  If a not one is reached then run the function to add to the holding score - else take holding score down to zero
-
-
-
+let updateScoreText = () => {
+	playerOneTotalh2.innerText = `${playerOne.totalScore}`;
+	playerOneHoldingh3.innerText = `${playerOne.holdingScore}`
+}
