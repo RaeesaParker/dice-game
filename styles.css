@@ -107,6 +107,11 @@ button{
 }
 
 
+#btn-newGame:hover {
+	color: var(--red);
+	cursor: pointer;
+}
+
 
 /* ------------------------- MAIN ------------------------------- */
 

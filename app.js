@@ -19,6 +19,8 @@ let playerTwo = {
 	totalScore: 0
 }
 
+let btnNewGame = document.getElementById("btn-newGame");
+
 let playerOneHoldingh3 = document.getElementById("play1-score-hold");
 
 let playerOneTotalh2 = document.getElementById("play1-score-total");
@@ -106,5 +108,24 @@ let updateScoreText = () => {
 //  When HOLD is pressed = > switch to the other player
 
 
+
+// Add event listener to NEW GAME button which resets everything
+
+btnNewGame.addEventListener("click", () => {
+	playerOne = {
+		holdingScore: 0,
+		totalScore: 0
+	}
+
+	playerTwo = {
+		holdingScore: 0,
+		totalScore: 0
+	}
+	playerOneTotalh2.innerText = `0`;
+	playerOneHoldingh3.innerText = `0`;
+
+	secOverscreen.style.display = "block"
+
+});
 
 
