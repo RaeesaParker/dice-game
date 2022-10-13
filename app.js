@@ -99,3 +99,12 @@ let updateScoreText = () => {
 	playerOneTotalh2.innerText = `${playerOne.totalScore}`;
 	playerOneHoldingh3.innerText = `${playerOne.holdingScore}`
 }
+
+
+
+
+//  When HOLD is pressed = > switch to the other player
+
+
+
+
