@@ -21,6 +21,8 @@ let playerTwo = {
 
 let btnNewGame = document.getElementById("btn-newGame");
 
+let secOverscreen = document.getElementById("sec-overscreen");
+
 let playerOneHoldingh3 = document.getElementById("play1-score-hold");
 
 let playerOneTotalh2 = document.getElementById("play1-score-total");
@@ -29,9 +31,15 @@ let playerOneHoldBtn = document.getElementById("play1-btn-hold")
 
 
 
-// ============= Remove overlay screen if any button is detected =============
 
-let secOverscreen = document.getElementById("sec-overscreen");
+
+
+//====================================================
+// ================== EVENT LISTENERS ================
+// ===================================================
+
+
+// ====== Remove overlay screen if any button is detected ====
 
 body.addEventListener("keydown", (event) => {
 	// Turn off the display
@@ -39,6 +47,8 @@ body.addEventListener("keydown", (event) => {
 		secOverscreen.style.display = "none";
 	}
 })
+
+
 
 
 // ============= Randomise dice when pressed =============
@@ -75,19 +85,7 @@ figDie.addEventListener("click", (event) => {
 })
 
 
-// If the outcome is 1 => set holding score to zero => change inner text to zero
-// Else keep adding to holding score
-let diceOutcome = (randomNum) => {
-	if (randomNum == 1 ){
-		playerOne.holdingScore = 0;
-	}
-	else{
-		playerOne.holdingScore = playerOne.holdingScore + randomNum;
-	}
-	playerOneHoldingh3.innerText = `${playerOne.holdingScore}`
-}
-
-
+// ============= HOLD BUTTON =============
 //  If the hold button is clicked then add the holding score to the total => take holding down to zero
 playerOneHoldBtn.addEventListener("click", () => {
 	playerOne.totalScore = playerOne.holdingScore ; 
@@ -97,19 +95,7 @@ playerOneHoldBtn.addEventListener("click", () => {
 
 
 
-let updateScoreText = () => {
-	playerOneTotalh2.innerText = `${playerOne.totalScore}`;
-	playerOneHoldingh3.innerText = `${playerOne.holdingScore}`
-}
-
-
-
-
-//  When HOLD is pressed = > switch to the other player
-
-
-
-// Add event listener to NEW GAME button which resets everything
+// ============= NEW GAME BUTTON =============
 
 btnNewGame.addEventListener("click", () => {
 	playerOne = {
@@ -125,7 +111,43 @@ btnNewGame.addEventListener("click", () => {
 	playerOneHoldingh3.innerText = `0`;
 
 	secOverscreen.style.display = "block"
-
 });
+
+
+
+
+//====================================================
+// ==================== FUNCTIONS ====================
+// ===================================================
+
+
+// ============= DICE OUTCOME =============
+
+// If the outcome is 1 => set holding score to zero => change inner text to zero
+// Else keep adding to holding score
+let diceOutcome = (randomNum) => {
+	if (randomNum == 1 ){
+		playerOne.holdingScore = 0;
+	}
+	else{
+		playerOne.holdingScore = playerOne.holdingScore + randomNum;
+	}
+	playerOneHoldingh3.innerText = `${playerOne.holdingScore}`
+}
+
+
+
+
+
+// ============= UPDATE SCORES=============
+
+let updateScoreText = () => {
+	playerOneTotalh2.innerText = `${playerOne.totalScore}`;
+	playerOneHoldingh3.innerText = `${playerOne.holdingScore}`
+}
+
+
+
+
 
 
