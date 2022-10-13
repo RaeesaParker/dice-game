@@ -6,13 +6,11 @@
 
 /* ------------------------- ELEMENTS ------------------------------- */
 
-html{
-	height: 100%;
-}
+
 
 body{
+	background-color: var(--red); 
 	margin: 0;
-	background-color: var(--red); ;
 }
 
 h1{
@@ -33,9 +31,6 @@ h3{
 	text-align: center;
 }
 
-p{
-	/*margin-top: 50%;*/
-}
 
 button{
 	display: flex;
@@ -81,9 +76,9 @@ button{
 
 /* ------------------------- HEADER ------------------------------- */
 
-
 #sec-header{
 	width: 100%;
+	min-height: 50vh;
 }
 
 .header-flex-container{
@@ -93,6 +88,7 @@ button{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
+	min-height: 10vh;
 }
 
 .header-flex-item{	
@@ -119,7 +115,7 @@ button{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	min-height: 50vh;
+	min-height: 85vh;
 }
 
 
@@ -172,6 +168,11 @@ button{
 	text-align: center;
 }
 
+#main-die p {
+	font-size: 1.5vw ;
+	margin-top: 50%;
+}
+
 #fig-die{
 	height: 100px;
 }
@@ -182,21 +183,21 @@ button{
 /* ------------------------- FOOTER ------------------------------- */
 
 #sec-footer{
+	background-color: var(--black);
 	bottom:0px;
 	position:absolute;
+	min-height: 5vh;
 	width:100%;
 }
 
 .footer-container{
-	background-color: var(--black);
 	text-align: center;
 }
 
 .footer-container p {
 	color: var(--white);
-	font-size: 0.75vw;
-	margin: 0;
-	padding: 0.1% 0;
+	font-size: 60%;
+	margin: 1.5vh 0 0 0 ;
 }
 
 
