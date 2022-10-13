@@ -46,6 +46,8 @@ body.addEventListener("keydown", (event) => {
 	if (secOverscreen.style.display != "none"){
 		secOverscreen.style.display = "none";
 	}
+	// Add overscreen to player 2
+	gameStart()
 })
 
 
@@ -119,6 +121,23 @@ btnNewGame.addEventListener("click", () => {
 //====================================================
 // ==================== FUNCTIONS ====================
 // ===================================================
+
+// ============= START GAME =============
+
+let gameStart = () => {
+
+	// Add overscreen to player 2
+	addOverscreen()
+}
+
+
+// Add overscreen to player screen
+
+let addOverscreen = () => {
+	let playerTwoOverscreen = document.getElementById("player2-div")
+	playerTwoOverscreen.style.backgroundColor = "var(--black)"
+}
+
 
 
 // ============= DICE OUTCOME =============

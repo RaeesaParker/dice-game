@@ -158,6 +158,25 @@ button{
 }
 
 
+/* ====== Game play CSS Coding ====== */
+
+#player1-div{
+	background-color: none;
+}
+
+#player2-div{
+	background-color: none;
+}
+
+#play1-btn-hold{
+	display: block;
+}
+
+#play2-btn-hold{
+	display: none;
+}
+
+
 
 /* ----------- DIE ----------- */
 
