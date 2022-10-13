@@ -24,12 +24,20 @@
 
 <body>
 
+	<!--------- OVERSCREEN ------------>
+	<div id="sec-overscreen">
+		<div id="overscreen-flex-container">
+			<p>Press any button to begin playing</p>
+		</div>
+	</div>
+
+
 	<!--------- HEADER ------------>
 
-	<header id="sec-header">
+	<header>
 		<div class="header-flex-container">
 			<div class="header-flex-item">
-				<h3>New Game</h3>					
+				<h2 id="btn-newGame">New Game</h2>					
 			</div>
 			<div class="header-flex-item">
 				<h1>Dice Game</h1>	
@@ -42,19 +50,38 @@
 
 	<!--------- MAIN ------------>
 
-	<main>
+	<main id="sec-main">
 		<div class="main-flex-container">
 			
 			<div class="main-flex-item main-flex-player">
-				<p>Player 1</p>
+				<div class="main-player-total-div">
+					<h2>Player 1</h2>
+					<h2 id="play1-score-total" >0</h2>				
+				</div>
+				<div class="main-player-current-div">
+					<h3>Current Score</h3>
+					<h3 id="play1-score-hold" >0</h3>					
+				</div>
+				<button id="play1-btn-hold" class="button-hold">Hold</button>
 			</div>
 
 			<div id="main-flex-dice" class="main-flex-item">
-				<p>Dice</p>
+				<div id="main-die">
+					<img id="fig-die" src="./assets/1.png">
+					<p>Player 1 roll</p>
+				</div>
 			</div>
 
 			<div class="main-flex-item main-flex-player">
-				<p>Player 2</p>
+				<div class="main-player-total-div">
+					<h2>Player 2</h2>
+					<h2 id="play3-score-total" >0</h2>				
+				</div>
+				<div class="main-player-current-div">
+					<h3>Current Score</h3>
+					<h3 id="play3-score-hold" >0</h3>					
+				</div>
+				<button id="play3-btn-hold" class="button-hold">Hold</button>
 			</div>
 		</div>
 	</main>
@@ -65,7 +92,7 @@
 
 	<footer id="sec-footer">
 		<div class="footer-container">
-			<p>&copy Raeesa Parker 2022<p>	
+			<p>&copy Raeesa Parker 2022</p>	
 		</div>
 	</footer>
 

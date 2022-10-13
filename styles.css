@@ -6,13 +6,11 @@
 
 /* ------------------------- ELEMENTS ------------------------------- */
 
-html{
-	height: 100%;
-}
+
 
 body{
+	background-color: var(--red); 
 	margin: 0;
-	background-color: var(--white) ;
 }
 
 h1{
@@ -21,39 +19,76 @@ h1{
 	padding: 3% 0;
 }
 
-h3{
-	font-size: 2vw;
+h2{
+	font-size: 2vw ;
 	margin: 0;
+	text-align: center;
 }
 
-p{
-	color: green;
+h3{
+	font-size: 1.5vw;
+	margin: 0;
+	text-align: center;
+}
+
+
+button{
+	display: flex;
+	margin: auto auto;
 }
 
 /* ------------------------- VARIABLES ------------------------------- */
 
 
 :root{
-	--white: #F5EDED;
-	--red:  #D72323;
-	--grey:  #3E3636;
+	--white: #F5F5F5;
+	--red:  #F05454;
+	--grey:  #30475E;
 	--black: #000000;
+}
+
+
+
+/* ------------------------- OVERSCREEN ------------------------------- */
+
+#sec-overscreen{
+	background-color: rgb(0,0,0, 0.7);
+	display: block;
+	min-height: 100vh;
+	min-width: 100vw;
+	position: absolute;
+}
+
+#overscreen-flex-container{
+	align-items: center;
+	display: flex;
+	height: 100vh;
+	justify-content: center;
+}
+
+#sec-overscreen p{
+	background-color: black;
+	color: var(--white);
+	font-size: 4vw;
+	padding: 2% 3% ;
 }
 
 
 /* ------------------------- HEADER ------------------------------- */
 
-
 #sec-header{
 	width: 100%;
+	min-height: 50vh;
 }
 
 .header-flex-container{
 	align-items: center;
+	background-color: var(--white);
 	border-bottom: 3px solid var(--black);
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
+	min-height: 10vh;
 }
 
 .header-flex-item{	
@@ -72,20 +107,87 @@ p{
 }
 
 
+#btn-newGame:hover {
+	color: var(--red);
+	cursor: pointer;
+}
+
 
 /* ------------------------- MAIN ------------------------------- */
 
 .main-flex-container{
-	background-color: var(--grey);
+	align-items: stretch;
 	display: flex;
 	flex-direction: row;
-	justify-content: space-evenly;
+	justify-content: space-between;
+	min-height: 85vh;
 }
 
-.main-flex-item{
-	background-color: red;
+
+
+
+/* ----------- PLAYER ----------- */
+
+.main-flex-player{
+	flex-grow: 3;
 }
 
+.main-player-total-div{
+	margin: 12% 0;
+}
+
+.main-player-current-div{
+	margin: 5% 0 ;
+}
+
+.main-flex-player h2{
+	font-size: 5vw;
+	padding: 5% 0 0 0 ;
+}
+
+.main-flex-player h3{
+	font-size: 2vw;
+	padding-bottom: 3%;
+}
+
+.button-hold{
+	background-color: var(--red);
+	border-radius: 5%;
+	margin-top: 7%;
+	padding: 2% 10%;
+}
+
+
+
+/* ----------- DIE ----------- */
+
+#main-flex-dice{
+	align-items: center;
+	background-color: var(--grey);
+	display: flex;
+	flex-grow: 2;
+	justify-content: center;
+}
+
+#main-die{
+	text-align: center;
+}
+
+#main-die p {
+	color: var(--black);
+	font-size: 1.5vw ;
+	margin-top: 50%;
+}
+
+#fig-die{
+	height: 100px;
+	border-radius: 17%;
+}
+
+#fig-die:hover{
+	box-shadow: 2px 2px black;
+	cursor: pointer;
+}
 
 
 
@@ -93,21 +195,21 @@ p{
 /* ------------------------- FOOTER ------------------------------- */
 
 #sec-footer{
+	background-color: var(--black);
 	bottom:0px;
 	position:absolute;
+	min-height: 5vh;
 	width:100%;
 }
 
 .footer-container{
-	background-color: var(--black);
 	text-align: center;
 }
 
 .footer-container p {
 	color: var(--white);
-	font-size: 0.75vw;
-	margin: 0;
-	padding: 0.1% 0;
+	font-size: 60%;
+	margin: 1.5vh 0 0 0 ;
 }
 
 
