@@ -1,12 +1,11 @@
 
-// Create a variable called active player
+// After hold is pressed change active player
 
 
 
 // ======== VARIABLES ============
 
 let body = document.body;
-
 
 
 // -------- GAME VARIABLES
@@ -26,11 +25,11 @@ let btnNewGame = document.getElementById("btn-newGame");
 
 let figDie = document.getElementById("fig-die");
 
-let playerOneHoldingh3 = document.getElementById("play1-score-hold");
+// let playerOneHoldingh3 = document.getElementById("play1-score-hold");
 
-let playerOneTotalh2 = document.getElementById("play1-score-total");
+// let playerOneTotalh2 = document.getElementById("play1-score-total");
 
-let playerOneHoldBtn = document.getElementById("play1-btn-hold")
+// let playerOneHoldBtn = document.getElementById("play1-btn-hold")
 
 // let playerTwoHoldingh3 = document.getElementById("play2-score-hold");
 
@@ -38,15 +37,34 @@ let playerOneHoldBtn = document.getElementById("play1-btn-hold")
 
 // let playerTwoHoldBtn = document.getElementById("play2-btn-hold")
 
-let activePlayer = "1";
+let activePlayer = "2";
 
-let inActivePlayer = "2";
+let inActivePlayer = "1";
 
 
 
 //====================================================
-// ==================== FUNCTIONS ====================
+// ==================== GAME PLAY ====================
 // ===================================================
+
+
+
+
+// ======================== Start OVERLAY SCREEN =======================
+
+body.addEventListener("keydown", (event) => {
+
+	let secOverscreen = document.getElementById("start-screen");
+
+	// Turn off the display
+	if (secOverscreen.style.display != "none"){
+		secOverscreen.style.display = "none";
+	}
+	// Add overscreen to player 2
+	gameStart(activePlayer, inActivePlayer)
+})
+
+
 
 // ============= START GAME =============
 
@@ -55,39 +73,12 @@ let gameStart = (activePlayer, inActivePlayer) => {
 }
 
 
-
 // ============= Add Overscreen =============
 
 let addOverscreen = (inActivePlayer) => {
 	let playerOverscreen = document.getElementById(`player${inActivePlayer}-div`)
 	playerOverscreen.style.backgroundColor = "var(--black)"
 }
-
-
-
-
-// ============= RESET ALL SCORES ON GAME RESTART =============
-
-let resetScores = () => {
-	// Reset scores stored in objects
-	playerOne = {
-		holdingScore: 0,
-		totalScore: 0
-	}
-
-	playerTwo = {
-		holdingScore: 0,
-		totalScore: 0
-	}
-	// Reset scores on gameboard
-	let allScores = document.querySelectorAll(".score");
-
-	allScores.forEach((score) => {
-		score.innerText = "0"
-	})
-}
-
-
 
 
 
@@ -119,6 +110,10 @@ let diceOutcome = (randomNum, activePlayer) => {
 		}
 	}
 }
+
+
+
+
 
 // ============= HOLD BUTTON =============
 //  Assign the hold buttons
@@ -185,6 +180,36 @@ function updateScores (event) {
 
 
 
+
+
+
+
+
+// ============= RESET ALL SCORES ON GAME RESTART =============
+
+let resetScores = () => {
+	// Reset scores stored in objects
+	playerOne = {
+		holdingScore: 0,
+		totalScore: 0
+	}
+
+	playerTwo = {
+		holdingScore: 0,
+		totalScore: 0
+	}
+	// Reset scores on gameboard
+	let allScores = document.querySelectorAll(".score");
+
+	allScores.forEach((score) => {
+		score.innerText = "0"
+	})
+}
+
+
+
+// ============= ADD ENDING SCREEN =============
+
 let addEndingScreen = (activePlayer) =>{
 	let endOverscreen = document.getElementById("end-screen")
 	// Turn off the display
@@ -208,26 +233,6 @@ let addEndingScreen = (activePlayer) =>{
 
 
 
-//====================================================
-// ================== EVENT LISTENERS ================
-// ===================================================
-
-
-
-// ======================== Start Game =======================
-// ====== Remove overlay screen if any button is detected ====
-
-body.addEventListener("keydown", (event) => {
-
-	let secOverscreen = document.getElementById("start-screen");
-
-	// Turn off the display
-	if (secOverscreen.style.display != "none"){
-		secOverscreen.style.display = "none";
-	}
-	// Add overscreen to player 2
-	gameStart(activePlayer, inActivePlayer)
-})
 
 
 
@@ -262,9 +267,6 @@ figDie.addEventListener("click", (event) => {
 	}
 	diceOutcome(randomNum, activePlayer)
 })
-
-
-
 
 
 
