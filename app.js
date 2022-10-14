@@ -1,12 +1,13 @@
 
-// WRIE A FUNCTION TO RESET EVERYTHING = ADD IT TO THE END SCREEN
 
+//  When the score is one => change active players and run game again
+
+//   The active player is switched when the hold button is pressed OR the player gets a one
 
 
 // ======== VARIABLES ============
 
 let body = document.body;
-
 
 
 // -------- GAME VARIABLES
@@ -26,30 +27,18 @@ let btnNewGame = document.getElementById("btn-newGame");
 
 let figDie = document.getElementById("fig-die");
 
-let playerOneHoldingh3 = document.getElementById("play1-score-hold");
+let activePlayer = "1";
 
-let playerOneTotalh2 = document.getElementById("play1-score-total");
-
-let playerOneHoldBtn = document.getElementById("play1-btn-hold")
-
-let playerTwoHoldingh3 = document.getElementById("play2-score-hold");
-
-let playerTwoTotalh2 = document.getElementById("play2-score-total");
-
-let playerTwoHoldBtn = document.getElementById("play2-btn-hold")
-
-let activePlayer = "one";
-
-
+let inActivePlayer = "2";
 
 
 
 //====================================================
-// ================== EVENT LISTENERS ================
+// ==================== GAME PLAY ====================
 // ===================================================
 
 
-// ====== Remove overlay screen if any button is detected ====
+// ======================== Start OVERLAY SCREEN =======================
 
 body.addEventListener("keydown", (event) => {
 
@@ -60,16 +49,142 @@ body.addEventListener("keydown", (event) => {
 		secOverscreen.style.display = "none";
 	}
 	// Add overscreen to player 2
-	gameStart()
+	gameStart(activePlayer, inActivePlayer)
 })
+
+
+
+// ============= START GAME =============
+
+let gameStart = (activePlayer, inActivePlayer) => {
+
+	let playerHoldBtns = document.querySelectorAll(".button-hold") 
+
+	if (activePlayer == "1"){
+		playerHoldBtns[0].style.display = "block";
+		playerHoldBtns[1].style.display = "none";
+	}
+	else{
+		playerHoldBtns[0].style.display = "none";
+		playerHoldBtns[1].style.display = "block";
+	}
+
+	addOverscreen(activePlayer, inActivePlayer)
+	holdButton(activePlayer, inActivePlayer)
+	rollDice(activePlayer, inActivePlayer)
+}
+
+
+// ============= Add Overscreen =============
+
+let addOverscreen = (activePlayer, inActivePlayer) => {
+
+	let playerActiveOverscreen = document.getElementById(`player${activePlayer}-div`)
+	let playerInActiveOverscreen = document.getElementById(`player${inActivePlayer}-div`)
+
+	playerActiveOverscreen.style.backgroundColor = "var(--red)"
+	playerInActiveOverscreen.style.backgroundColor = "var(--black)";
+}
+
+
+
+
+
+
+
+
+
+// ============= ADD EVENT LISTENER TO BUTTON =============
+
+function holdButton (activePlayer, inActivePlayer) {
+	//  Assign the hold buttons
+	let playerHoldBtn = document.getElementById(`play${activePlayer}-btn-hold`);
+	playerHoldBtn.addEventListener("click", updateScores, false) ;
+	playerHoldBtn.active = activePlayer;
+	playerHoldBtn.inActive = inActivePlayer;
+}
+
+
+// ============= UPDATE SCORES=============
+
+function updateScores (event) {
+
+	console.log(event)
+
+	// Assign the active player
+	let activePlayer = event.currentTarget.active;
+	let inActivePlayer = event.currentTarget.inActive;
+
+
+	//  Assign the scores based on active player
+	let playerHoldScore = document.getElementById(`play${activePlayer}-score-hold`);
+	let playerTotalScore = document.getElementById(`play${activePlayer}-score-total`);
+
+
+	if (activePlayer == "1"){
+		console.log("Updating Player 1 score")
+		// Update the total score and set holding score to zero
+		playerOne.totalScore = playerOne.totalScore + playerOne.holdingScore ; 
+		playerOne.holdingScore = 0;
+
+		// Update HTML Score 
+		playerTotalScore.innerText = `${playerOne.totalScore}`;
+		playerHoldScore.innerText = `${playerOne.holdingScore}`
+
+		// If the score is over 20 => Add the ending screen => else restart game
+		if (playerOne.totalScore > 20){
+			addEndingScreen(activePlayer)
+		}
+		else {
+			activePlayer = "2";
+			inActivePlayer = "1";
+			gameStart(activePlayer, inActivePlayer);
+		}
+	}
+	else{
+		console.log("Updating Player 2 score")
+		// Update the total score and set holding score to zero 
+		playerTwo.totalScore = playerTwo.totalScore + playerTwo.holdingScore ; 
+		playerTwo.holdingScore = 0;
+
+		// Update HTML Score
+		playerTotalScore.innerText = `${playerTwo.totalScore}`;
+		playerHoldScore.innerText = `${playerTwo.holdingScore}`
+
+		// If the score is over 20 => Add the ending screen => else restart game
+		if (playerTwo.totalScore > 20){
+			addEndingScreen(activePlayer)
+		}
+		else{
+			activePlayer = "1";
+			inActivePlayer = "2";
+			gameStart(activePlayer, inActivePlayer);
+		}
+	}
+}
+
+
 
 
 
 
 // ============= Randomise dice when pressed =============
 
-// Randomise dice when clicked
-figDie.addEventListener("click", (event) => {
+function rollDice (activePlayer, inActivePlayer) {
+	// Randomise dice when clicked
+	figDie.addEventListener("click", randomise, false);
+	figDie.active = activePlayer
+	figDie.inActive = inActivePlayer
+}
+
+
+// Randomise function 
+
+function randomise (event) {
+
+	// Assign the active player
+	let activePlayer = event.currentTarget.active;
+	let inActivePlayer = event.currentTarget.inActive;
 
 	let randomNum = Math.floor((Math.random() * 6) + 1);
 
@@ -95,63 +210,54 @@ figDie.addEventListener("click", (event) => {
 			break;
 	}
 
-	diceOutcome(randomNum)
-})
+	diceOutcome(randomNum, activePlayer)
 
-
-
-// ============= HOLD BUTTON =============
-//  If the hold button is clicked then add the holding score to the total => take holding down to zero
-playerOneHoldBtn.addEventListener("click", () => {
-	playerOne.totalScore = playerOne.totalScore + playerOne.holdingScore ; 
-	playerOne.holdingScore = 0;
-
-	updateScoreText()
-})
-
-
-
-// ============= NEW GAME BUTTON =============
-
-btnNewGame.addEventListener("click", () => {
-	playerOne = {
-		holdingScore: 0,
-		totalScore: 0
-	}
-
-	playerTwo = {
-		holdingScore: 0,
-		totalScore: 0
-	}
-	playerOneTotalh2.innerText = `0`;
-	playerOneHoldingh3.innerText = `0`;
-
-	secOverscreen.style.display = "block"
-});
-
-
-
-
-//====================================================
-// ==================== FUNCTIONS ====================
-// ===================================================
-
-// ============= START GAME =============
-
-let gameStart = () => {
-	// Add overscreen to player 2
-	addOverscreen()
 }
 
-// Add overscreen to player screen
-let addOverscreen = () => {
-	let playerTwoOverscreen = document.getElementById("player2-div")
-	playerTwoOverscreen.style.backgroundColor = "var(--black)"
+
+
+// ============= DICE OUTCOME =============
+
+// If the outcome is 1 => set holding score to zero => change inner text to zero
+// Else keep adding to holding score
+let diceOutcome = (randomNum, activePlayer) => {
+
+	console.log(activePlayer)
+
+	let playerHoldScore = document.getElementById(`play${activePlayer}-score-hold`);
+
+	if (randomNum == 1 ){
+		if (activePlayer == "1"){
+			playerOne.holdingScore = 0;
+			
+		}
+		else {
+			playerTwo.holdingScore = 0;
+		}
+		playerHoldScore.innerText = `0`;
+	}
+	else{
+		if (activePlayer == "1") {
+			console.log("Adding Player 1 outcome")
+			playerOne.holdingScore = playerOne.holdingScore + randomNum;
+			playerHoldScore.innerText = `${playerOne.holdingScore}`
+		}
+		else{
+			console.log("Adding Player2 outcome")
+			playerTwo.holdingScore = playerTwo.holdingScore + randomNum;
+			playerHoldScore.innerText = `${playerTwo.holdingScore}`
+		}
+	}
 }
+
+
+
+
+
+
 
 
 // ============= RESET ALL SCORES ON GAME RESTART =============
-
 
 let resetScores = () => {
 	// Reset scores stored in objects
@@ -164,47 +270,20 @@ let resetScores = () => {
 		holdingScore: 0,
 		totalScore: 0
 	}
-
 	// Reset scores on gameboard
-	playerOneTotalh2.innerText = `0`;
-	playerOneHoldingh3.innerText = `0`
-	playerTwoTotalh2.innerText = `0`;
-	playerTwoHoldingh3.innerText = `0`
-}
+	let allScores = document.querySelectorAll(".score");
 
-
-// ============= DICE OUTCOME =============
-
-// If the outcome is 1 => set holding score to zero => change inner text to zero
-// Else keep adding to holding score
-let diceOutcome = (randomNum) => {
-	if (randomNum == 1 ){
-		playerOne.holdingScore = 0;
-	}
-	else{
-		playerOne.holdingScore = playerOne.holdingScore + randomNum;
-	}
-	playerOneHoldingh3.innerText = `${playerOne.holdingScore}`
+	allScores.forEach((score) => {
+		score.innerText = "0"
+	})
 }
 
 
 
 
+// ============= ADD ENDING SCREEN =============
 
-// ============= UPDATE SCORES=============
-
-let updateScoreText = () => {
-	playerOneTotalh2.innerText = `${playerOne.totalScore}`;
-	playerOneHoldingh3.innerText = `${playerOne.holdingScore}`
-
-	// If the score is over 20 => Add the ending screen
-	if (playerOne.totalScore > 20){
-		addEndingScreen()
-	}
-}
-
-
-let addEndingScreen = () =>{
+let addEndingScreen = (activePlayer) =>{
 	let endOverscreen = document.getElementById("end-screen")
 	// Turn off the display
 	if (endOverscreen.style.display = "none"){
@@ -224,6 +303,25 @@ let addEndingScreen = () =>{
 	})
 }
 
+
+
+
+// ============= NEW GAME BUTTON =============
+
+btnNewGame.addEventListener("click", () => {
+	playerOne = {
+		holdingScore: 0,
+		totalScore: 0
+	}
+
+	playerTwo = {
+		holdingScore: 0,
+		totalScore: 0
+	}
+	resetScores()
+
+	secOverscreen.style.display = "block"
+});
 
 
 
