@@ -1,8 +1,5 @@
 
-
-//  When the score is one => change active players and run game again
-
-//   The active player is switched when the hold button is pressed OR the player gets a one
+// BUG => BUTTON STAYS ON PLAYER 2 IF PLAYER 2 WINS
 
 
 // ======== VARIABLES ============
