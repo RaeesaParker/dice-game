@@ -80,7 +80,11 @@ let resetScores = () => {
 		totalScore: 0
 	}
 	// Reset scores on gameboard
-	document.querySelectorAll("score").innerText = `0`;
+	let allScores = document.querySelectorAll(".score");
+
+	allScores.forEach((score) => {
+		score.innerText = "0"
+	})
 }
 
 
@@ -195,9 +199,9 @@ let addEndingScreen = (activePlayer) =>{
 
 	// Reset the scores 
 	resetScores();
-	
-	// // Start Game
-	// gameStart();
+
+	// Start Game
+	gameStart();
 	})
 }
 
