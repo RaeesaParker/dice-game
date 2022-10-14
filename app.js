@@ -1,6 +1,6 @@
 
-// After hold is pressed change active player
 
+// ADD ROLL DICE 
 
 
 // ======== VARIABLES ============
@@ -81,16 +81,21 @@ let gameStart = (activePlayer, inActivePlayer) => {
 		playerHoldBtns[1].style.display = "block";
 	}
 
-
-	addOverscreen(inActivePlayer)
+	addOverscreen(activePlayer, inActivePlayer)
+	holdButton(activePlayer, inActivePlayer)
+	rollDice(activePlayer, inActivePlayer)
 }
 
 
 // ============= Add Overscreen =============
 
-let addOverscreen = (inActivePlayer) => {
-	let playerOverscreen = document.getElementById(`player${inActivePlayer}-div`)
-	playerOverscreen.style.backgroundColor = "var(--black)"
+let addOverscreen = (activePlayer, inActivePlayer) => {
+
+	let playerActiveOverscreen = document.getElementById(`player${activePlayer}-div`)
+	let playerInActiveOverscreen = document.getElementById(`player${inActivePlayer}-div`)
+
+	playerActiveOverscreen.style.backgroundColor = "var(--red)"
+	playerInActiveOverscreen.style.backgroundColor = "var(--black)";
 }
 
 
@@ -100,6 +105,8 @@ let addOverscreen = (inActivePlayer) => {
 // If the outcome is 1 => set holding score to zero => change inner text to zero
 // Else keep adding to holding score
 let diceOutcome = (randomNum, activePlayer) => {
+
+	console.log(activePlayer)
 
 	let playerHoldScore = document.getElementById(`play${activePlayer}-score-hold`);
 
@@ -114,10 +121,12 @@ let diceOutcome = (randomNum, activePlayer) => {
 	}
 	else{
 		if (activePlayer == "1") {
+			console.log("Adding Player 1 outcome")
 			playerOne.holdingScore = playerOne.holdingScore + randomNum;
 			playerHoldScore.innerText = `${playerOne.holdingScore}`
 		}
 		else{
+			console.log("Adding Player2 outcome")
 			playerTwo.holdingScore = playerTwo.holdingScore + randomNum;
 			playerHoldScore.innerText = `${playerTwo.holdingScore}`
 		}
@@ -130,15 +139,28 @@ let diceOutcome = (randomNum, activePlayer) => {
 
 // ============= HOLD BUTTON =============
 //  Assign the hold buttons
-let playerHoldBtn = document.querySelectorAll(".button-hold");
+// let playerHoldBtn = document.querySelectorAll(".button-hold");
 
-// Add anevent listener to each button => Run function to update the score
-playerHoldBtn.forEach( (button) => {
-	button.addEventListener("click", updateScores, false) ;
-	button.activePlayer = activePlayer;
-});
+// // Add anevent listener to each button => Run function to update the score
+// playerHoldBtn.forEach( (button) => {
+// 	button.addEventListener("click", updateScores, false) ;
+// 	button.activePlayer = activePlayer;
+// 	button.inActivePlayer = inActivePlayer;
+// 	console.log(`Active Button= ${activePlayer}, inactive Button = ${inActivePlayer}`)
+
+// });
 
 
+
+// Function to add event listener to button 
+
+function holdButton (activePlayer, inActivePlayer) {
+	//  Assign the hold buttons
+	let playerHoldBtn = document.getElementById(`play${activePlayer}-btn-hold`);
+	playerHoldBtn.addEventListener("click", updateScores, false) ;
+	playerHoldBtn.active = activePlayer;
+	playerHoldBtn.inActive = inActivePlayer;
+}
 
 
 // ============= UPDATE SCORES=============
@@ -146,7 +168,9 @@ playerHoldBtn.forEach( (button) => {
 function updateScores (event) {
 
 	// Assign the active player
-	let activePlayer = event.currentTarget.activePlayer;
+	let activePlayer = event.currentTarget.active;
+	let inActivePlayer = event.currentTarget.inActive;
+
 
 	//  Assign the scores based on active player
 	let playerHoldScore = document.getElementById(`play${activePlayer}-score-hold`);
@@ -154,6 +178,7 @@ function updateScores (event) {
 
 
 	if (activePlayer == "1"){
+		console.log("Updating Player 1 score")
 		// Update the total score and set holding score to zero
 		playerOne.totalScore = playerOne.totalScore + playerOne.holdingScore ; 
 		playerOne.holdingScore = 0;
@@ -162,15 +187,18 @@ function updateScores (event) {
 		playerTotalScore.innerText = `${playerOne.totalScore}`;
 		playerHoldScore.innerText = `${playerOne.holdingScore}`
 
-		// If the score is over 20 => Add the ending screen
+		// If the score is over 20 => Add the ending screen => else restart game
 		if (playerOne.totalScore > 20){
 			addEndingScreen(activePlayer)
 		}
 		else {
 			activePlayer = "2";
+			inActivePlayer = "1";
+			gameStart(activePlayer, inActivePlayer);
 		}
 	}
 	else{
+		console.log("Updating Player 2 score")
 		// Update the total score and set holding score to zero 
 		playerTwo.totalScore = playerTwo.totalScore + playerTwo.holdingScore ; 
 		playerTwo.holdingScore = 0;
@@ -179,19 +207,17 @@ function updateScores (event) {
 		playerTotalScore.innerText = `${playerTwo.totalScore}`;
 		playerHoldScore.innerText = `${playerTwo.holdingScore}`
 
+		// If the score is over 20 => Add the ending screen => else restart game
 		if (playerTwo.totalScore > 20){
 			addEndingScreen(activePlayer)
 		}
 		else{
-			activePlayer = "1"
+			activePlayer = "1";
+			inActivePlayer = "2";
+			gameStart(activePlayer, inActivePlayer);
 		}
 	}
 }
-
-
-
-
-
 
 
 
@@ -252,8 +278,29 @@ let addEndingScreen = (activePlayer) =>{
 
 // ============= Randomise dice when pressed =============
 
-// Randomise dice when clicked
-figDie.addEventListener("click", (event) => {
+// function holdButton (activePlayer, inActivePlayer) {
+// 	//  Assign the hold buttons
+// 	let playerHoldBtn = document.getElementById(`play${activePlayer}-btn-hold`);
+// 	playerHoldBtn.addEventListener("click", updateScores, false) ;
+// 	playerHoldBtn.active = activePlayer;
+// 	playerHoldBtn.inActive = inActivePlayer;
+// }
+
+function rollDice (activePlayer, inActivePlayer) {
+	// Randomise dice when clicked
+	figDie.addEventListener("click", randomise, false);
+	figDie.active = activePlayer
+	figDie.inActive = inActivePlayer
+}
+
+
+// Randomise function 
+
+function randomise (event) {
+
+	// Assign the active player
+	let activePlayer = event.currentTarget.active;
+	let inActivePlayer = event.currentTarget.inActive;
 
 	let randomNum = Math.floor((Math.random() * 6) + 1);
 
@@ -278,8 +325,15 @@ figDie.addEventListener("click", (event) => {
 			figDie.src = "./assets/6.png"
 			break;
 	}
+
 	diceOutcome(randomNum, activePlayer)
-})
+
+}
+
+
+
+
+
 
 
 
