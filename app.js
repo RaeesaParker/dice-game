@@ -79,9 +79,8 @@ let resetScores = () => {
 		holdingScore: 0,
 		totalScore: 0
 	}
-
 	// Reset scores on gameboard
-	document.getElementsByClassName("score").innerText = `0`;
+	document.querySelectorAll("score").innerText = `0`;
 }
 
 
@@ -117,17 +116,40 @@ let diceOutcome = (randomNum, activePlayer) => {
 	}
 }
 
+// ============= HOLD BUTTON =============
+//  Assign the hold buttons
+let playerHoldBtn = document.querySelectorAll(".button-hold");
+
+// Add anevent listener to each button => Run function to update the score
+playerHoldBtn.forEach( (button) => {
+	button.addEventListener("click", updateScores, false) ;
+	button.activePlayer = activePlayer;
+});
 
 
 
 
 // ============= UPDATE SCORES=============
 
-let updateScoreText = (activePlayer) => {
+function updateScores (event) {
+
+	// Assign the active player
+	let activePlayer = event.currentTarget.activePlayer;
+
+	//  Assign the scores based on active player
+	let playerHoldScore = document.getElementById(`play${activePlayer}-score-hold`);
+	let playerTotalScore = document.getElementById(`play${activePlayer}-score-total`);
+
 
 	if (activePlayer == "1"){
+		// Update the total score and set holding score to zero
+		playerOne.totalScore = playerOne.totalScore + playerOne.holdingScore ; 
+		playerOne.holdingScore = 0;
+
+		// Update HTML Score 
 		playerTotalScore.innerText = `${playerOne.totalScore}`;
 		playerHoldScore.innerText = `${playerOne.holdingScore}`
+
 		// If the score is over 20 => Add the ending screen
 		if (playerOne.totalScore > 20){
 			addEndingScreen(activePlayer)
@@ -137,8 +159,14 @@ let updateScoreText = (activePlayer) => {
 		}
 	}
 	else{
+		// Update the total score and set holding score to zero 
+		playerTwo.totalScore = playerTwo.totalScore + playerTwo.holdingScore ; 
+		playerTwo.holdingScore = 0;
+
+		// Update HTML Score
 		playerTotalScore.innerText = `${playerTwo.totalScore}`;
 		playerHoldScore.innerText = `${playerTwo.holdingScore}`
+
 		if (playerTwo.totalScore > 20){
 			addEndingScreen(activePlayer)
 		}
@@ -147,6 +175,10 @@ let updateScoreText = (activePlayer) => {
 		}
 	}
 }
+
+
+
+
 
 
 let addEndingScreen = (activePlayer) =>{
@@ -163,9 +195,9 @@ let addEndingScreen = (activePlayer) =>{
 
 	// Reset the scores 
 	resetScores();
-
-	// Start Game
-	gameStart();
+	
+	// // Start Game
+	// gameStart();
 	})
 }
 
@@ -175,9 +207,7 @@ let addEndingScreen = (activePlayer) =>{
 //====================================================
 // ================== EVENT LISTENERS ================
 // ===================================================
-	// let playerHoldScore = document.getElementById(`play${activePlayer}-score-hold`);
-	// let playerTotalScore = document.getElementById(`play${activePlayer}-score-total`);
-	// let playerHoldBtn = document.getElementById(`play${activePlayer}-btn-hold`);
+
 
 
 // ======================== Start Game =======================
@@ -231,20 +261,6 @@ figDie.addEventListener("click", (event) => {
 
 
 
-// ============= HOLD BUTTON =============
-//  If the hold button is clicked then add the holding score to the total => take holding down to zero
-playerHoldBtn.addEventListener("click", (activePlayer) => {
-
-	if (activePlayer == "1"){
-		playerOne.totalScore = playerOne.totalScore + playerOne.holdingScore ; 
-		playerOne.holdingScore = 0;
-	}
-	else{
-		playerTwo.totalScore = playerTwo.totalScore + playerTwo.holdingScore ; 
-		playerTwo.holdingScore = 0;
-	}
-	updateScoreText(activePlayer)
-})
 
 
 
