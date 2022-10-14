@@ -51,7 +51,7 @@ button{
 
 /* ------------------------- OVERSCREEN ------------------------------- */
 
-#sec-overscreen{
+.sec-overscreen{
 	background-color: rgb(0,0,0, 0.7);
 	display: block;
 	min-height: 100vh;
@@ -59,20 +59,24 @@ button{
 	position: absolute;
 }
 
-#overscreen-flex-container{
+.overscreen-flex-container{
 	align-items: center;
 	display: flex;
 	height: 100vh;
 	justify-content: center;
 }
 
-#sec-overscreen p{
+.sec-overscreen p{
 	background-color: black;
 	color: var(--white);
 	font-size: 4vw;
 	padding: 2% 3% ;
 }
 
+
+#end-screen{
+	display: none;
+}
 
 /* ------------------------- HEADER ------------------------------- */
 
