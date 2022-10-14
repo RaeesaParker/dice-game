@@ -2,6 +2,8 @@
 
 //  When the score is one => change active players and run game again
 
+//   The active player is switched when the hold button is pressed OR the player gets a one
+
 
 // ======== VARIABLES ============
 
@@ -106,6 +108,8 @@ function holdButton (activePlayer, inActivePlayer) {
 // ============= UPDATE SCORES=============
 
 function updateScores (event) {
+
+	console.log(event)
 
 	// Assign the active player
 	let activePlayer = event.currentTarget.active;
@@ -212,12 +216,6 @@ function randomise (event) {
 
 
 
-
-
-
-
-
-
 // ============= DICE OUTCOME =============
 
 // If the outcome is 1 => set holding score to zero => change inner text to zero
@@ -231,6 +229,7 @@ let diceOutcome = (randomNum, activePlayer) => {
 	if (randomNum == 1 ){
 		if (activePlayer == "1"){
 			playerOne.holdingScore = 0;
+			
 		}
 		else {
 			playerTwo.holdingScore = 0;
