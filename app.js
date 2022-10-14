@@ -37,9 +37,9 @@ let figDie = document.getElementById("fig-die");
 
 // let playerTwoHoldBtn = document.getElementById("play2-btn-hold")
 
-let activePlayer = "2";
+let activePlayer = "1";
 
-let inActivePlayer = "1";
+let inActivePlayer = "2";
 
 
 
@@ -69,6 +69,19 @@ body.addEventListener("keydown", (event) => {
 // ============= START GAME =============
 
 let gameStart = (activePlayer, inActivePlayer) => {
+
+	let playerHoldBtns = document.querySelectorAll(".button-hold") 
+
+	if (activePlayer == "1"){
+		playerHoldBtns[0].style.display = "block";
+		playerHoldBtns[1].style.display = "none";
+	}
+	else{
+		playerHoldBtns[0].style.display = "none";
+		playerHoldBtns[1].style.display = "block";
+	}
+
+
 	addOverscreen(inActivePlayer)
 }
 
