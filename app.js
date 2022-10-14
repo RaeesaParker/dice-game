@@ -21,9 +21,10 @@ let playerTwo = {
 	totalScore: 0
 }
 
+
 let btnNewGame = document.getElementById("btn-newGame");
 
-let secOverscreen = document.getElementById("start-screen");
+let figDie = document.getElementById("fig-die");
 
 let playerOneHoldingh3 = document.getElementById("play1-score-hold");
 
@@ -37,7 +38,7 @@ let playerTwoTotalh2 = document.getElementById("play2-score-total");
 
 let playerTwoHoldBtn = document.getElementById("play2-btn-hold")
 
-
+let activePlayer = "one";
 
 
 
@@ -51,6 +52,9 @@ let playerTwoHoldBtn = document.getElementById("play2-btn-hold")
 // ====== Remove overlay screen if any button is detected ====
 
 body.addEventListener("keydown", (event) => {
+
+	let secOverscreen = document.getElementById("start-screen");
+
 	// Turn off the display
 	if (secOverscreen.style.display != "none"){
 		secOverscreen.style.display = "none";
@@ -64,10 +68,9 @@ body.addEventListener("keydown", (event) => {
 
 // ============= Randomise dice when pressed =============
 
-let figDie = document.getElementById("fig-die");
-
 // Randomise dice when clicked
 figDie.addEventListener("click", (event) => {
+
 	let randomNum = Math.floor((Math.random() * 6) + 1);
 
 	// Change the image depending on which number is selected
