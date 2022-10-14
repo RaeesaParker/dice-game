@@ -97,9 +97,10 @@ let addOverscreen = (activePlayer, inActivePlayer) => {
 // ============= ADD EVENT LISTENER TO BUTTON =============
 
 function holdButton (activePlayer, inActivePlayer) {
+
 	//  Assign the hold buttons
 	let playerHoldBtn = document.getElementById(`play${activePlayer}-btn-hold`);
-	playerHoldBtn.addEventListener("click", updateScores, false) ;
+	playerHoldBtn.addEventListener("click", updateScoreVariables, false) ;
 	playerHoldBtn.active = activePlayer;
 	playerHoldBtn.inActive = inActivePlayer;
 }
@@ -107,22 +108,23 @@ function holdButton (activePlayer, inActivePlayer) {
 
 // ============= UPDATE SCORES=============
 
-function updateScores (event) {
-
-	console.log(event)
+function updateScoreVariables (event) {
 
 	// Assign the active player
 	let activePlayer = event.currentTarget.active;
 	let inActivePlayer = event.currentTarget.inActive;
 
+	updateScores(activePlayer, inActivePlayer)
+}
 
+
+function updateScores (activePlayer, inActivePlayer) {
 	//  Assign the scores based on active player
 	let playerHoldScore = document.getElementById(`play${activePlayer}-score-hold`);
 	let playerTotalScore = document.getElementById(`play${activePlayer}-score-total`);
 
 
 	if (activePlayer == "1"){
-		console.log("Updating Player 1 score")
 		// Update the total score and set holding score to zero
 		playerOne.totalScore = playerOne.totalScore + playerOne.holdingScore ; 
 		playerOne.holdingScore = 0;
@@ -132,7 +134,7 @@ function updateScores (event) {
 		playerHoldScore.innerText = `${playerOne.holdingScore}`
 
 		// If the score is over 20 => Add the ending screen => else restart game
-		if (playerOne.totalScore > 20){
+		if (playerOne.totalScore > 50){
 			addEndingScreen(activePlayer)
 		}
 		else {
@@ -142,7 +144,6 @@ function updateScores (event) {
 		}
 	}
 	else{
-		console.log("Updating Player 2 score")
 		// Update the total score and set holding score to zero 
 		playerTwo.totalScore = playerTwo.totalScore + playerTwo.holdingScore ; 
 		playerTwo.holdingScore = 0;
@@ -152,7 +153,7 @@ function updateScores (event) {
 		playerHoldScore.innerText = `${playerTwo.holdingScore}`
 
 		// If the score is over 20 => Add the ending screen => else restart game
-		if (playerTwo.totalScore > 20){
+		if (playerTwo.totalScore > 50){
 			addEndingScreen(activePlayer)
 		}
 		else{
@@ -162,6 +163,8 @@ function updateScores (event) {
 		}
 	}
 }
+
+
 
 
 
@@ -210,7 +213,7 @@ function randomise (event) {
 			break;
 	}
 
-	diceOutcome(randomNum, activePlayer)
+	diceOutcome(randomNum, activePlayer, inActivePlayer)
 
 }
 
@@ -220,30 +223,29 @@ function randomise (event) {
 
 // If the outcome is 1 => set holding score to zero => change inner text to zero
 // Else keep adding to holding score
-let diceOutcome = (randomNum, activePlayer) => {
+let diceOutcome = (randomNum, activePlayer, inActivePlayer ) => {
 
-	console.log(activePlayer)
+	// console.log(`HERE ${activePlayer}, ${inActivePlayer}`)
 
 	let playerHoldScore = document.getElementById(`play${activePlayer}-score-hold`);
 
 	if (randomNum == 1 ){
 		if (activePlayer == "1"){
 			playerOne.holdingScore = 0;
-			
+			updateScores(activePlayer, inActivePlayer)
 		}
 		else {
 			playerTwo.holdingScore = 0;
+			updateScores(activePlayer, inActivePlayer)
 		}
 		playerHoldScore.innerText = `0`;
 	}
 	else{
 		if (activePlayer == "1") {
-			console.log("Adding Player 1 outcome")
 			playerOne.holdingScore = playerOne.holdingScore + randomNum;
 			playerHoldScore.innerText = `${playerOne.holdingScore}`
 		}
 		else{
-			console.log("Adding Player2 outcome")
 			playerTwo.holdingScore = playerTwo.holdingScore + randomNum;
 			playerHoldScore.innerText = `${playerTwo.holdingScore}`
 		}
