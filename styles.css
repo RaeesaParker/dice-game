@@ -206,9 +206,15 @@ li{
 
 .button-hold{
 	background-color: var(--red);
-	border-radius: 5%;
+	border: 1px solid var(--black);
+	border-radius: 25%;
 	margin-top: 7%;
 	padding: 2% 10%;
+}
+
+.button-hold:hover{
+	background-color: var(--black);
+	color: var(--red);
 }
 
 
