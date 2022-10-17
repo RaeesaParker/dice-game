@@ -207,7 +207,7 @@ li{
 .button-hold{
 	background-color: var(--red);
 	border: 1px solid var(--black);
-	border-radius: 25%;
+	border-radius: 12px;
 	margin-top: 7%;
 	padding: 2% 10%;
 }

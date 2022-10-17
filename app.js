@@ -60,6 +60,7 @@ function overscreenStart (){
 let gameStart = (activePlayer, inActivePlayer) => {
 
 	let playerHoldBtns = document.querySelectorAll(".button-hold") 
+	let paraActivePlayer = document.getElementById("para-active-roller");
 	let whoosh = new Audio("./assets/sounds/whoosh.mp3");
 
 	if (activePlayer == "1"){
@@ -72,6 +73,8 @@ let gameStart = (activePlayer, inActivePlayer) => {
 		playerHoldBtns[1].style.display = "block";
 		whoosh.play();
 	}
+
+paraActivePlayer.innerText = `Player ${activePlayer} rolls`;
 
 	addOverscreen(activePlayer, inActivePlayer)
 	holdButton(activePlayer, inActivePlayer)
