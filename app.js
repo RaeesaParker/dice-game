@@ -34,21 +34,25 @@ let inActivePlayer = "2";
 // ==================== GAME PLAY ====================
 // ===================================================
 
+overscreenStart();
 
 // ======================== Start OVERLAY SCREEN =======================
 
-body.addEventListener("keydown", (event) => {
+function overscreenStart (){ 
 
-	let secOverscreen = document.getElementById("start-screen");
+	body.addEventListener("keydown", (event) => {
 
-	// Turn off the display
-	if (secOverscreen.style.display != "none"){
-		secOverscreen.style.display = "none";
-	}
-	// Add overscreen to player 2
-	gameStart(activePlayer, inActivePlayer)
-})
+		let secOverscreen = document.getElementById("start-screen");
 
+		// Turn the display off
+		if (secOverscreen.style.display != "none"){
+			secOverscreen.style.display = "none";
+		}
+
+		// Add overscreen to player 2
+		gameStart(activePlayer, inActivePlayer)
+	})
+}
 
 
 // ============= START GAME =============
@@ -327,6 +331,13 @@ btnNewGame.addEventListener("click", () => {
 		totalScore: 0
 	}
 	resetScores()
+
+	// Add overscreen
+	let secOverscreen = document.getElementById("start-screen");
+	secOverscreen.style.display = "block"
+	overscreenStart();
+
+
 	// Reset Active Player 
 	let activePlayer = "1";
 	let inActivePlayer = "2" 
