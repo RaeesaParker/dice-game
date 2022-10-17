@@ -60,14 +60,17 @@ function overscreenStart (){
 let gameStart = (activePlayer, inActivePlayer) => {
 
 	let playerHoldBtns = document.querySelectorAll(".button-hold") 
+	let whoosh = new Audio("./assets/sounds/whoosh.mp3");
 
 	if (activePlayer == "1"){
 		playerHoldBtns[0].style.display = "block";
-		playerHoldBtns[1].style.display = "none";
+		playerHoldBtns[1].style.display = "none";	
+		whoosh.play();
 	}
 	else{
 		playerHoldBtns[0].style.display = "none";
 		playerHoldBtns[1].style.display = "block";
+		whoosh.play();
 	}
 
 	addOverscreen(activePlayer, inActivePlayer)
@@ -186,12 +189,15 @@ function rollDice (activePlayer, inActivePlayer) {
 
 function randomise (event) {
 
+	// Play Dice sound
+	let roll = new Audio("./assets/sounds/roll.mp3");
+	roll.play();
+
 	// Assign the active player
 	let activePlayer = event.currentTarget.active;
 	let inActivePlayer = event.currentTarget.inActive;
 
 	let randomNum = Math.floor((Math.random() * 6) + 1);
-	console.log(`Random number generated is ${randomNum}`)
 
 	figDie.src = `./assets/${randomNum}.png`;
 
