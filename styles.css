@@ -8,6 +8,7 @@
 body{
 	background-color: var(--red); 
 	margin: 0;
+	font-family: 'Coda', cursive;
 }
 
 h1{
