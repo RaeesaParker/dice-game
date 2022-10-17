@@ -193,33 +193,35 @@ function randomise (event) {
 	let randomNum = Math.floor((Math.random() * 6) + 1);
 	console.log(`Random number generated is ${randomNum}`)
 
+	figDie.src = `./assets/${randomNum}.png`;
+
 	// Change the image depending on which number is selected
-	switch (randomNum) {
-		case randomNum = 1:
-			figDie.src = "./assets/1.png"
-			console.log(`Changing image`)
-			break;
-		case randomNum = 2:
-			figDie.src = "./assets/2.png"
-			console.log(`Changing image`)
-			break;
-		case randomNum = 3:
-			figDie.src = "./assets/3.png"
-			console.log(`Changing image`)
-			break;
-		case randomNum = 4:
-			figDie.src = "./assets/4.png"
-			console.log(`Changing image`)
-			break;
-		case randomNum = 5:
-			figDie.src = "./assets/5.png"
-			console.log(`Changing image`)
-			break;
-		case randomNum = 6:
-			figDie.src = "./assets/6.png"
-			console.log(`Changing image`)
-			break;
-	}
+	// switch (randomNum) {
+	// 	case randomNum = 1:
+	// 		figDie.src = "./assets/1.png"
+	// 		console.log(`Changing image`)
+	// 		break;
+	// 	case randomNum = 2:
+	// 		figDie.src = "./assets/2.png"
+	// 		console.log(`Changing image`)
+	// 		break;
+	// 	case randomNum = 3:
+	// 		figDie.src = "./assets/3.png"
+	// 		console.log(`Changing image`)
+	// 		break;
+	// 	case randomNum = 4:
+	// 		figDie.src = "./assets/4.png"
+	// 		console.log(`Changing image`)
+	// 		break;
+	// 	case randomNum = 5:
+	// 		figDie.src = "./assets/5.png"
+	// 		console.log(`Changing image`)
+	// 		break;
+	// 	case randomNum = 6:
+	// 		figDie.src = "./assets/6.png"
+	// 		console.log(`Changing image`)
+	// 		break;
+	// }
 
 	diceOutcome(randomNum, activePlayer, inActivePlayer)
 
