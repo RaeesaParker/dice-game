@@ -283,11 +283,16 @@ let resetScores = () => {
 // ============= ADD ENDING SCREEN =============
 
 let addEndingScreen = (activePlayer) =>{
+
 	let endOverscreen = document.getElementById("end-screen")
 	// Turn off the display
 	if (endOverscreen.style.display = "none"){
 		endOverscreen.style.display = "block";
 	}
+
+	let endingWinner = document.getElementById("end-winner")
+
+	endingWinner.innerText=`Player ${activePlayer} Wins!`
 
 	body.addEventListener("keydown", (event) => {
 
