@@ -135,7 +135,7 @@ function updateScores (activePlayer, inActivePlayer) {
 		playerHoldScore.innerText = `${playerOne.holdingScore}`
 
 		// If the score is over 20 => Add the ending screen => else restart game
-		if (playerOne.totalScore > 20){
+		if (playerOne.totalScore > 50){
 			addEndingScreen(activePlayer)
 		}
 		else {
@@ -154,7 +154,7 @@ function updateScores (activePlayer, inActivePlayer) {
 		playerHoldScore.innerText = `${playerTwo.holdingScore}`
 
 		// If the score is over 20 => Add the ending screen => else restart game
-		if (playerTwo.totalScore > 20){
+		if (playerTwo.totalScore > 50){
 			addEndingScreen(activePlayer)
 		}
 		else{
